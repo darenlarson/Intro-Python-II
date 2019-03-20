@@ -2,6 +2,13 @@ from room import Room
 from player import Player
 from item import Item
 
+# Declare all the items
+item = {
+    "hat": Item("Hat", "A floppy hat that keeps you cool in the sun"),
+    "knife": Item("Knife", "A sharp knife with a wooden handle"),
+    "bow": Item("Bow", "A long bow to shoot arrows with")
+}
+
 # Declare all the rooms
 
 room = {
@@ -40,15 +47,45 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player1 = Player('Player1', 'outside')
+player = Player('Daren', room['outside'])
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
+
 # * Waits for user input and decides what to do.
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+while True:
+    print('\n---------------------------------------------------------------------------\n')
+    print(f'Current Room: {player.room.name}, Description: {player.room.description}\n')
+    # print(f'Room Description: {player.room.description}')
+    user_input = input('What do you want to do? (use n/s/e/w to go to another room): ')
+
+    if len(user_input) == 1:
+        if user_input == 'n':
+            if player.room == room['overlook'] or player.room == room['treasure']:
+                print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
+            else:
+                player.room = player.room.n_to
+        elif user_input == 's':
+            if player.room == room['outside'] or player.room == room['narrow']:
+                print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
+            else:
+                player.room = player.room.s_to
+        elif user_input == 'e':
+            if player.room == room['narrow'] or player.room == room['treasure'] or player.room == room['overlook']:
+                print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
+            else:
+                player.room = player.room.e_to
+        elif user_input == 'w':
+            if player.room == room['outside'] or player.room == room['foyer'] or player.room == room['overlook'] or player.room == room['treasure']:
+                print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
+            else:
+                player.room = player.room.w_to
+
