@@ -10,12 +10,12 @@ Up to this point, you've gotten your feet wet by working on a bunch of small Pyt
 ## Tasks
 
 <!-- * Add classes for rooms and the player -->
-* Add a simple parser that reads user input and performs actions
-* Add items to the game that the user can carry around
+<!-- * Add a simple parser that reads user input and performs actions -->
+<!-- * Add items to the game that the user can carry around -->
 <!-- * Make rooms able to hold multiple items -->
-* Make the player able to carry multiple items
-* Add two-word commands to the parser
-* Add the `get` and `drop` commands to the parser
+<!-- * Make the player able to carry multiple items -->
+<!-- * Add two-word commands to the parser -->
+<!-- * Add the `get` and `drop` commands to the parser -->
 
 ## Specification
 
@@ -34,19 +34,19 @@ The `/src` directory contains the files `adv.py`, which is where the main logic 
 
      <!-- * Hint: the name should be one word for ease in parsing later. -->
 
-* Add the ability to add items to rooms.
+<!-- * Add the ability to add items to rooms. -->
 
-  * The `Room` class should be extended with a `list` that holds the `Item`s
-    that are currently in that room.
+  <!-- * The `Room` class should be extended with a `list` that holds the `Item`s
+    that are currently in that room. -->
 
-  * Add functionality to the main loop that prints out all the items that are
-    visible to the player when they are in that room.
+  <!-- * Add functionality to the main loop that prints out all the items that are
+    visible to the player when they are in that room. -->
 
-* Add capability to add `Item`s to the player's inventory. The inventory can
+<!-- * Add capability to add `Item`s to the player's inventory. The inventory can
   also be a `list` of items "in" the player, similar to how `Item`s can be in a
-  `Room`.
+  `Room`. -->
 
-* Add a new type of sentence the parser can understand: two words.
+<!-- * Add a new type of sentence the parser can understand: two words.
 
   * Until now, the parser could just understand one sentence form:
 
@@ -58,15 +58,13 @@ The `/src` directory contains the files `adv.py`, which is where the main logic 
 
     `verb` `object`
 
-    such as "take coins" or "drop sword".
+    such as "take coins" or "drop sword". -->
 
-  * Split the entered command and see if it has 1 or 2 words in it to determine
-    if it's the first or second form.
+  <!-- * Split the entered command and see if it has 1 or 2 words in it to determine if it's the first or second form. -->
 
-* Implement support for the verb `get` followed by an `Item` name. This will be
-  used to pick up `Item`s.
+<!-- * Implement support for the verb `get` followed by an `Item` name. This will be used to pick up `Item`s. -->
 
-  * If the user enters `get` or `take` followed by an `Item` name, look at the
+  <!-- * If the user enters `get` or `take` followed by an `Item` name, look at the
     contents of the current `Room` to see if the item is there.
 
      * If it is there, remove it from the `Room` contents, and add it to the
@@ -80,13 +78,11 @@ The `/src` directory contains the files `adv.py`, which is where the main logic 
 
         * The `Item` can use this to run additional code when it is picked up.
 
-     * Add an `on_drop` method to `Item`. Implement it similar to `on_take`.
+     * Add an `on_drop` method to `Item`. Implement it similar to `on_take`. -->
 
-* Implement support for the verb `drop` followed by an `Item` name. This is the
-  opposite of `get`/`take`.
+<!-- * Implement support for the verb `drop` followed by an `Item` name. This is the opposite of `get`/`take`. -->
 
-* Add the `i` and `inventory` commands that both show a list of items currently
-  carried by the player.
+<!-- * Add the `i` and `inventory` commands that both show a list of items currently carried by the player. -->
 
 
 
@@ -96,7 +92,7 @@ The `/src` directory contains the files `adv.py`, which is where the main logic 
 
 In arbitrary order:
 
-* Add more rooms
+<!-- * Add more rooms -->
 
 * Add scoring
 
