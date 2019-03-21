@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from item import LightSource
 
 # Declare all the items
 item = {
@@ -9,34 +10,35 @@ item = {
     "bow": Item("Bow", "A long bow to shoot arrows with."),
     "gold": Item("Gold", "Shiny goooooooold."),
     "silver": Item("Silver", "Shiny silverrrrrr. Worth 1/8 gold oz."),
-    "hammer": Item("Heavy Hammer", "Steel hammer is very heavy"),
-    "shovel": Item("Shovel", "For digging...")
+    "hammer": Item("Heavy Hammer", "Steel hammer is very heavy."),
+    "shovel": Item("Shovel", "For digging..."),
+    "lantern": LightSource("Lantern", "Gives you unlimited light where there is none."),
 }
 
 # Declare all the rooms
 
 room = {
-    'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
-    'foyer': Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east."),
-    'overlook': Room("Grand Overlook", "A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."),
-    'narrow':   Room("Narrow Passage", "The narrow passage bends here from west to north. The smell of gold permeates the air."),
-    'treasure': Room("Treasure Chamber", "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."),
-    'beach': Room("Ocean View Beach", "You've made it to the ocean and see ships on the horizon."),
-    'forest': Room("Hidden Forest", "The forest is dark and quiet. It seems as if you are being watched."),
-    'desert': Room("Hot Desert", "Nothing but sand dunes."),
-    'mountains': Room("Rocky Mountain Mile", "Mountains as far as you can see. You notice some paths through some of the peaks."),
-    'city': Room("New York City", "The city is busy. There is a market place to trade for goods nearby."),
-    'hyrule': Room("Hyrule", "Welcome Link."),
-    'volcano': Room("Active Volcano", "It is hot and looks like hell. Demons are everywhere."),
+    'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons", True),
+    'foyer': Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east.", True),
+    'overlook': Room("Grand Overlook", "A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm.", True),
+    'narrow':   Room("Narrow Passage", "The narrow passage bends here from west to north. The smell of gold permeates the air.", False),
+    'treasure': Room("Treasure Chamber", "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south.", True),
+    'beach': Room("Ocean View Beach", "You've made it to the ocean and see ships on the horizon.", True),
+    'forest': Room("Hidden Forest", "The forest is dark and quiet. It seems as if you are being watched.", False),
+    'desert': Room("Hot Desert", "Nothing but sand dunes.", True),
+    'mountains': Room("Rocky Mountain Mile", "Mountains as far as you can see. You notice some paths through some of the peaks.", True),
+    'city': Room("New York City", "The city is busy. There is a market place to trade for goods nearby.", True),
+    'hyrule': Room("Hyrule", "Welcome Link.", True),
+    'volcano': Room("Active Volcano", "It is hot and looks like hell. Demons are everywhere.", False),
 }
 
 # Add items to rooms
-room['outside'].items = [item['silver'], item['gold']]
+room['outside'].items = [item['silver'], item['gold'], item['lantern']]
 room['foyer'].items = [item['silver'], item['hammer']]
 room['overlook'].items = [item['gold'], item['hat']]
 room['narrow'].items = [item['knife'], item['bow']]
 room['treasure'].items = [item['gold'], item['silver']]
-room['beach'].items = [item['shovel']]
+room['beach'].items = [item['shovel'], item['lantern']]
 room['forest'].items = [item['bow'], item['knife']]
 room['desert'].items = [item['hat'], item['shovel']]
 room['mountains'].items = [item['hat'], item['knife']]
@@ -85,7 +87,7 @@ player = Player('Daren', room['outside'])
 # Loop to play the game
 while True:
     print('---------------------------------------------------------------------------')
-    print(f'Current Room: {player.room.name}, Description: {player.room.description}\n')
+    print(f'Current Room: {player.room.name}, Description: {player.room.description}, Light: {"Yes" if player.room.is_light == True else "No"}\n')
     print("'n/e/s/w' to move. 'list' to view items in the room. 'inventory/i' to view your items.\n")
     user_input = input('What do you want to do: ')
     print('\n')
