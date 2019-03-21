@@ -9,12 +9,14 @@ class Player:
             self.items = []
         else:
             self.items = items
+
     def get_item(self, item):
         for i in self.room.items:
             if item == i.name:        
                 self.items.append(i)
                 print(f'You picked up the {i.name}.')
                 self.room.items.remove(i)
+
     def drop_item(self, item):
         for i in self.items:
             if item == i.name:
