@@ -66,33 +66,48 @@ while True:
     print(f'Current Room: {player.room.name}, Description: {player.room.description}\n')
     user_input = input('What do you want to do? (n/s/e/w to go to another room, list to see items in room): ')
     print('\n')
+    parsedInput = user_input.split(' ')
 
-    if user_input == 'n':
-        if player.room == room['overlook'] or player.room == room['treasure']:
-            print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
-        else:
-            player.room = player.room.n_to
-    elif user_input == 's':
-        if player.room == room['outside'] or player.room == room['narrow']:
-            print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
-        else:
-            player.room = player.room.s_to
-    elif user_input == 'e':
-        if player.room == room['narrow'] or player.room == room['treasure'] or player.room == room['overlook'] or player.room == room['outside']:
-            print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
-        else:
-            player.room = player.room.e_to
-    elif user_input == 'w':
-        if player.room == room['outside'] or player.room == room['foyer'] or player.room == room['overlook'] or player.room == room['treasure']:
-            print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
-        else:
-            player.room = player.room.w_to
-    elif user_input == 'list':
-        if len(player.room.items) == 0:
-            print(f'\nThere are no items in this room')
-        else:
-            for item in player.room.items:
-                print(f'{item.name}: {item.description}')
-    elif user_input == 'q':
-        break
+    if len(parsedInput) == 1:
+        if user_input == 'n':
+            if player.room == room['overlook'] or player.room == room['treasure']:
+                print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
+            else:
+                player.room = player.room.n_to
+        elif user_input == 's':
+            if player.room == room['outside'] or player.room == room['narrow']:
+                print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
+            else:
+                player.room = player.room.s_to
+        elif user_input == 'e':
+            if player.room == room['narrow'] or player.room == room['treasure'] or player.room == room['overlook'] or player.room == room['outside']:
+                print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
+            else:
+                player.room = player.room.e_to
+        elif user_input == 'w':
+            if player.room == room['outside'] or player.room == room['foyer'] or player.room == room['overlook'] or player.room == room['treasure']:
+                print('\nYOU CANNOT GO THIS WAY. Choose another direction.\n')
+            else:
+                player.room = player.room.w_to
+        elif user_input == 'list':
+            if len(player.room.items) == 0:
+                print(f'\nThere are no items in this room')
+            else:
+                for item in player.room.items:
+                    print(f'{item.name}: {item.description}')
+        elif user_input == "inventory" or user_input == "i":
+            if len(player.items) == 0:
+                print('You have no items')
+            else:
+                for i in player.items:
+                    print(f'{i.name}: {i.description}')
+        elif user_input == 'q':
+            break
+    elif len(parsedInput) == 2:
+        action = parsedInput[0]
+        targetItem = parsedInput[1]
 
+        if action == 'get' or action == 'take':
+            player.get_item(targetItem)
+        if action == 'drop':
+            player.drop_item(targetItem)
